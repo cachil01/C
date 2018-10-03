@@ -73,16 +73,16 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 		exit(-1);
 	}
 
-	
+	printf("The code is %d\n", code);	
 
 	int flag =1;
-	int count =0;
+	int count =1;
 	char temp[60]= {};
 	char temp2[60] = {};
 	while (fgets(temp, 60, fp )!= NULL && fgets(temp2, 60, fp2) != NULL){
 
 		
-		if (code == 1 || code == 3 || code == 7){
+		if (code == 1 || code == 3 || code == 5 || code == 7){
 			int t=0;
 			
 			while (temp[t] != '\0'){
@@ -104,9 +104,26 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 		if (strcmp(temp, temp2) != 0){
 
 			flag =0;
-			printf("The line %d is not equal\n", count);
+			//printf("The line %d is not equal\n", count);
+			if (code == 4 || code == 5 || code == 6 || code == 7){
+				printf("%d: ", count);
+			}
 
-			
+			int p;
+			for(p = 0; temp[p]!= '\0'; p++){
+				printf("%c", temp[p]);
+			}
+		//	printf("\n");
+			if(code == 4 || code == 5 || code == 6 || code == 7){
+				printf("%d: ", count);
+
+			}
+			for(p =0; temp2[p] != '\0' ; p++){
+				printf("%c", temp2[p]);
+
+			}
+		//	printf("\n");
+						
 		}
 	
 		count++;
@@ -114,7 +131,7 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 
 	}
 		
-	printf("%d lines read\n", count);
+	printf("\n%d lines read\n", count);
 
 
 
