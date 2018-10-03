@@ -1,0 +1,22 @@
+f1 l1
+f  l
+a
+a
+a
+f1 l6
+f l
+f l
+a
+a
+f1 l11
+f  l
+f  l
+f1 l14
+f  l
+f  l
+ASd
+a
+s
+f1 l20
+f  l
+f  l

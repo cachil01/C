@@ -1,0 +1,8 @@
+f1 l1 as
+f  l2 bar none
+f1 l3
+f1 l4
+f  l5
+aSd  l6 true blue
+f1 l7
+f  l8
