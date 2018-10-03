@@ -5,8 +5,8 @@
 //Macro for converting an uppercase character to a lowercase
 #define  lcase(x) ((x) >= 'A' && (x) <= 'Z' ? (x) + ('a' -'A'): (x))
 
-
-
+char makelc(char);
+void compareFiles(char *, char*, int);
 int main (int argc, char *argv[]){
 
 
@@ -37,7 +37,7 @@ int main (int argc, char *argv[]){
 
 				}
 				t--;
-			{
+			}
 			if(*t == 'n'){
 				t++;
 				if(*t == 'c'){
@@ -57,18 +57,19 @@ int main (int argc, char *argv[]){
 	filename1 = argv[argc-2];
 	filename2 = argv[argc-1];
 	
-	compare(filename1, filename2, code);
+	compareFiles(filename1, filename2, code);
 
 
     return 0;
 }
 
-void compare( char *filename1, char *filename2, int code  ){
+
+void compareFiles( char *filename1, char *filename2, int code  ){
 	
 	FILE *fp = fopen(filename1, "r");	// Here the file is opened for reading
 	FILE *fp2 = fopen(filename2, "r" );
 	if(fp == NULL || fp2 == NULL ){
-		printf("Failed to open file\n"); // Error message incase the file cant be opened
+		printf("Failed to open file\n"); // Error message in case the file cant be opened
 		exit(-1);
 	}
 
@@ -76,26 +77,25 @@ void compare( char *filename1, char *filename2, int code  ){
 
 	int flag =1;
 	int count =0;
-	char *temp;
-	char *temp2;
-	while (fgets(temp, 20, fp ) && fgets(temp2, 20, fp2)){
+	char temp[60]= {};
+	char temp2[60] = {};
+	while (fgets(temp, 60, fp )!= NULL && fgets(temp2, 60, fp2) != NULL){
 
 		
 		if (code == 1 || code == 3 || code == 7){
-			char *t = temp;
+			int t=0;
 			
-			while (*temp != '\0'){
-				*temp = lcase(*temp);
-				temp++;
+			while (temp[t] != '\0'){
+				temp[t] = lcase(temp[t]);
+				t++;
 			}
-			temp = t;
-			t = temp2;
-			while(*temp2 != '\0'){
-				*temp2 = lcase(*temp2);
-				temp2++;
+			t=0;
+			
+			while(temp2[t] != '\0'){
+				temp2[t] = lcase(temp2[t]);
+				t++;
 				
 			}
-			temp2 = t;
 
 			
 			
@@ -127,7 +127,8 @@ void compare( char *filename1, char *filename2, int code  ){
 		printf("the files are not the same\n");
 
 	}
-	
+	fclose(fp);
+	fclose(fp2);
 
 
 
@@ -145,7 +146,5 @@ char makelc(char c){
 	}
 
 	return c;
-
-
 
 }
