@@ -73,14 +73,19 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 		exit(-1);
 	}
 
-	printf("The code is %d\n", code);	
+	
 
 	int flag =1;
+	int flag2 =0;
 	int count =1;
 	char temp[60]= {};
 	char temp2[60] = {};
+	char lastLine1[60] = {};
+	char lastLine2[60] = {};
+	
 	while (fgets(temp, 60, fp )!= NULL && fgets(temp2, 60, fp2) != NULL){
 
+	
 		
 		if (code == 1 || code == 3 || code == 5 || code == 7){
 			int t=0;
@@ -102,48 +107,77 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 		}
 
 		if (strcmp(temp, temp2) != 0){
+			if(flag == 1){
+				flag =0;
 
-			flag =0;
-			//printf("The line %d is not equal\n", count);
-			if (code == 4 || code == 5 || code == 6 || code == 7){
-				printf("%d: ", count);
-			}
+				if (code == 4 || code == 5 || code == 6 || code == 7){
+					printf("%d: ", count);
+				}
+		
+				int p;
+				for(p = 0; temp[p]!= '\0'; p++){
+					printf("%c", temp[p]);
+				}
+		
+				if(code == 4 || code == 5 || code == 6 || code == 7){
+					printf("%d: ", count);
+	
+				}
+				for(p =0; temp2[p] != '\0' ; p++){
+					printf("%c", temp2[p]);
 
-			int p;
-			for(p = 0; temp[p]!= '\0'; p++){
-				printf("%c", temp[p]);
+				}
+				flag2++;
 			}
-		//	printf("\n");
-			if(code == 4 || code == 5 || code == 6 || code == 7){
-				printf("%d: ", count);
-
-			}
-			for(p =0; temp2[p] != '\0' ; p++){
-				printf("%c", temp2[p]);
-
-			}
-		//	printf("\n");
+			flag2++;
+	
 						
+		}
+		else{
+
+			if(flag == 0 && flag2 >1){
+				printf("Down to\n");
+				if(code == 4 || code == 5 || code ==6 || code ==7){
+					printf("%d: ", count-1);
+				}
+				printf("%s", lastLine1);
+				if(code == 4|| code ==5 || code ==6|| code == 7){
+					printf("%d: ", count-1);
+				}
+				printf("%s", lastLine2);
+				flag =1;
+				flag2 =0;
+			}
+			
+			flag =1;
+			flag2 =0;
+
+			
 		}
 	
 		count++;
 
+		strcpy(lastLine1, temp);
+		strcpy(lastLine2, temp2);
+	}
+	if(flag == 0 && flag2 >1){
+
+		printf("Down to\n");
+		if(code == 4 || code ==5 || code == 6|| code == 7){
+			printf("%d: ", count-1);
+
+		}
+		printf("%s", lastLine1);
+		if(code == 4 || code == 5 || code == 6 || code ==7){
+			printf("%d: ", count-1);
+		}
+		printf("%s\n", lastLine2);
+		
+
 
 	}
 		
-	printf("\n%d lines read\n", count);
-
-
-
-	if(flag ==1){
-
-		printf("the files are the same\n");
-	}
-	else{
-
-		printf("the files are not the same\n");
-
-	}
+	
 	fclose(fp);
 	fclose(fp2);
 
@@ -153,15 +187,3 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 
 }
 
-
-char makelc(char c){
-
-	if (c>='A' && c<='Z'){
-
-		return c + ('a' -'A');
-
-	}
-
-	return c;
-
-}
