@@ -246,46 +246,19 @@ int main(int argc, char *argv[]){
       total+= PRi[i];
    }
 
-   printf("host_id\t\thost_name\thosts_rank\tnorm_host_rank\n");
+   printf("host_id\t\thosts_rank\tnorm_host_rank\thosts_name\n");
    int x;
    
     char tempC[6] = {};
 
     
 
-    char**poiName = (char**)malloc(sizeof(char*)*count);
-
-    int u;
-    for (u=0; u<count;u++)
-    {
-        char tempX[20] = {};
-        strcpy(tempX,names[u]);
-        poiName[u] = tempX;
-        printf("%s\n", poiName[u]);
-
-    }   
     
-
-
     for(x=0; x<count ;x++){
-        char print[100] = {};
-        sprintf(print, "%d" , tags[x]);
-        strcat(print, "\t\t" );
-        //strcpy(tempNames, names[x]);
-       
-        strcat(print, poiName[x]);
-        strcat(print, "\t\t" );
         
-        sprintf(tempC, "%.3f", PRi[x]);
-        strcat(print,  tempC );
-        strcat(print, "\t\t" );
-        sprintf(tempC, "%.2f", PRi[x]/total);
-        strcat(print, tempC );
-        
-        puts(print);
-        //printf("%s\n",print);
-        
-        
+	printf("%d\t\t%.3f\t\t%.2f\t\t%s\n", tags[x], PRi[x], PRi[x]/total, names[x]);
+
+   
         
     }
 
