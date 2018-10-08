@@ -6,9 +6,16 @@
 int main(int argc, char *argv[]){
 
 
-    int **table1 = (int *) malloc(sizeof(int*) * 10);
-    int **table2 = (int *) malloc(sizeof(int*) * 10);
-
+    int **table1 = (int **) malloc(sizeof(int*) * 10);
+    int **table2 = (int **) malloc(sizeof(int*) * 10);
+	char **filedata = (char**) malloc(sizeof(char*) * 10);
+	
+	int p;
+	for(p=0;p<10;p++){
+		
+			filedata[p] = (char*)malloc(sizeof(char) *30);
+	}
+	
     if (argc !=3){
 
         printf("Wrong number of arguments.\n");
@@ -38,20 +45,44 @@ int main(int argc, char *argv[]){
     }
 
     char tokens[4];
-    tokens[0]= ' ';
+    tokens[0] = ' ';
     tokens[1] = '-';
     tokens[2] = '>';
     tokens[3] = ':';
     char line[20];
-    char *tokenized;
-    while (gets(line, 20, fp1) != NULL){
+	char *tokenized;
+	int count = 0;
+	char *point = *filedata;
+    while (fgets(filedata[count], 50, fp1) != NULL){
 
-        tokenized = strtok(line, tokens);
-
+        //tokenized = strtok(line, tokens);
+		point++;
+		count++;
 
     }
 
+	printf("Number of lines: %d\n", count);
+	int i;
+	char* tempP = filedata;
+	for (i =0; i< count ; i++){
+		
+			char*pointLine = *tempP;
+			while(*pointLine != '\0'){
+					printf("%c", *pointLine);
+				
+			}
+			printf("\n");
+			tempP++;
+		
+		
+	}
+	
+	
+	
 
 
     return 0;
 }
+
+
+
