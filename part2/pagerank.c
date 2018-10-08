@@ -1,15 +1,33 @@
+/**
+* @file pagerank.c
+* @brief This is a program compares two text files line by line and prints any missmatching lines 
+*
+*
+* @author Christakis Achilleos
+* @bug No known bugs. 
+*
+*
+*
+*
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
+/**
+* @brief This is the main funtion. 
+*
+* 
+* The program opens the two files and 
+*
+*
+* @param argc The number of arguments given through the command prompt
+* @param argv The arguments given through the command prompt
+* @return returns 0 when finished
+*/
 int main(int argc, char *argv[]){
 
 
-    int **table1 = (int **) malloc(sizeof(int*) * 10);
-    int **table2 = (int **) malloc(sizeof(int*) * 10);
-	char **filedata = (char**) malloc(sizeof(char*) * 10);
-	char **tkn = (char**) malloc(sizeof(char*) * 10);
 
     int **visits = (int **)malloc( sizeof(int*));
     char **names = (char **)malloc(sizeof(char*));
@@ -17,11 +35,7 @@ int main(int argc, char *argv[]){
 
 
 
-	int p;
-	for(p=0;p<10;p++){
-            tkn[p] = (char*) malloc(sizeof(char) *30);
-			filedata[p] = (char*)malloc(sizeof(char) *30);
-	}
+	
 	
     if (argc !=3){
 
