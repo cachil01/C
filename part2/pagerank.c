@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
 	char *tokenized;
 	int count = 0;
 	char *point = *filedata;
-    while (fgets(filedata[count], 50, fp1) != NULL){
+    while (fgets(filedata[count], 50, fp2) != NULL){
 
         //tokenized = strtok(line, tokens);
 		point++;
@@ -63,13 +63,13 @@ int main(int argc, char *argv[]){
 
 	printf("Number of lines: %d\n", count);
 	int i;
-	char* tempP = filedata;
+	char** tempP = filedata;
 	for (i =0; i< count ; i++){
 		
 			char*pointLine = *tempP;
 			while(*pointLine != '\0'){
 					printf("%c", *pointLine);
-				
+					pointLine++;	
 			}
 			printf("\n");
 			tempP++;
