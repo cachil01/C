@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MIN(X,Z,Y) ( (X) < (Z) ? ( (X) < (Y) ? (X) : (Y)) : ( (Z) < (Y) ? (Z) : (Y)) )
 
 int sed(char*, char*, int, int);
 int main(int argc, char *argv[]){
@@ -35,12 +36,12 @@ int main(int argc, char *argv[]){
 	
 	int count1 = 0;
 	int count2 = 0;
-	char temp1[50];
-	char temp2[50];
-	if(fgets(temp1, 50,fp1) == NULL){
+	char temp1[200];
+	char temp2[200];
+	if(fgets(temp1, 200,fp1) == NULL){
 		printf("Failed to read line.\n");
 	}
-	if (fgets(temp2, 50,fp2) == NULL ){
+	if (fgets(temp2, 200,fp2) == NULL ){
 		printf("failed to read line.\n");
 	}
 	
@@ -127,7 +128,7 @@ int main(int argc, char *argv[]){
 	
 	
 	
-	int num = sed(temp1, temp2, size1, size2);
+	int num = sedC(table1, table2, size1, size2);
 
 
 	printf("Minimum edits required to conver is %d\n", num);
@@ -144,6 +145,8 @@ int main(int argc, char *argv[]){
 
 
 int sed(char *table1, char *table2, int size1, int size2){
+	
+	int temp ;
 
 	if (size1 == 0){
 
@@ -155,9 +158,12 @@ int sed(char *table1, char *table2, int size1, int size2){
 		return size1;
 	}
 
-	if(*table1+(size1 - 1) == *table2+(size2 -1)){
+	if(table1[size1 - 1] == table2[size2 -1]){
 		
-		return sed(table1, table2, size1-1, size2-2);
+		temp =0;
+	}
+	else {
+		temp = 1;
 	}
 	
 	int res1 = sed(table1 , table2, size1, size2-1);
@@ -169,13 +175,56 @@ int sed(char *table1, char *table2, int size1, int size2){
 		if(res1 < res3){
 			return 1+res1;
 		}
-		return 1+res3;
+		return temp+res3;
 
 
 	}
 	if(res2 < res3){
 		return 1 +res2;
 	}
-	return 1+res3;
+	return temp+res3;
 
 }
+
+int sedC(char * str1, char * str2, int m, int n) 
+{ 
+
+	int j;
+	int i;
+    // Create a table to store results of subproblems 
+    int dp[m+1][n+1]; 
+  
+    // Fill d[][] in bottom up manner 
+    for ( i=0; i<=m; i++) 
+    { 
+        for ( j=0; j<=n; j++) 
+        { 
+            // If first string is empty, only option is to 
+            // isnert all characters of second string 
+            if (i==0) 
+                dp[i][j] = j;  // Min. operations = j 
+  
+            // If second string is empty, only option is to 
+            // remove all characters of second string 
+            else if (j==0) 
+                dp[i][j] = i; // Min. operations = i 
+  
+            // If last characters are same, ignore last char 
+            // and recur for remaining string 
+            else if (str1[i-1] == str2[j-1]) 
+                dp[i][j] = dp[i-1][j-1]; 
+  
+            // If the last character is different, consider all 
+            // possibilities and find the minimum 
+            else
+                dp[i][j] = 1 + MIN(dp[i][j-1],  // Insert 
+                                   dp[i-1][j],  // Remove 
+                                   dp[i-1][j-1]); // Replace 
+        } 
+    } 
+  
+    return dp[m][n]; 
+} 
+
+
+
