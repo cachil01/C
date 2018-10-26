@@ -22,16 +22,18 @@ typedef struct frontier_node{
 
 typedef struct {
 
-	tree_node *search_tree;
-	frontier_node *frontier_head;
-	frontier_node *frontier_tail;
+	TREE_NODE *search_tree;
+	FRONTIER_NODE *frontier_head;
+	FRONTIER_NODE *frontier_tail;
 	int size;
 
 } QUEUE;
 
 
-QUEUE *initQueue(tree_node *root);
+QUEUE *initQueue(TREE_NODE *root);
 
-int enqueue(QUEUE *q, frontier_node *n);
+int enqueue(QUEUE *q, TREE_NODE *n);
+
+FRONTIER_NODE *dequeue(QUEUE *q);
 
 #endif

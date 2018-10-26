@@ -61,7 +61,16 @@ int main(int argc, char *argv[]){
 
 	QUEUE *q = NULL;
 	q = initQueue(p);
+	
+	if(enqueue(q, p) != -1){
+		
+		
 
+	}
+	else{
+		printf("Error, exiting\n");
+		exit(EXIT_FAILURE);
+	}	
 
 
 
