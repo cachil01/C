@@ -1,8 +1,11 @@
-#include "TREE_NODE.h"
+
 //#include "frontier_node.h"
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "queue.h"
 
 int **readFile(char*filein, int size);
 
@@ -21,6 +24,8 @@ int main(int argc, char *argv[]){
 	//TREE_NODE *p = NULL;
 	int **puzzle = readFile(filein, size);
 	
+	
+
 
 	printf("Break: 7\n");
 
@@ -40,7 +45,25 @@ int main(int argc, char *argv[]){
 		
 	}
 
+	TREE_NODE *p = NULL;
+	p= (TREE_NODE *) malloc(sizeof(TREE_NODE));
 	
+	printf("Break: 8\n");
+
+	if(p == NULL){
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
+	
+	
+	p->puzzle = puzzle;
+	p->parent = NULL;
+
+	QUEUE *q = NULL;
+	q = initQueue(p);
+
+
+
 
 }
 
@@ -55,6 +78,13 @@ int determineSize(char *filein){
 	
 	int count;
 	char *tmp =(char*) malloc(sizeof(char)*100);
+	
+	if(tmp == NULL){
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
+
+	
 	while(fgets(tmp, 100, fp) != NULL){
 		count++;
 	}
@@ -78,6 +108,11 @@ int ** readFile(char *filein, int size){
 	}
 	
 	int **puzzle = (int**)malloc(sizeof(int*)*size);
+	
+	if(puzzle == NULL){
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
 
 
 	printf("Break: 4\n");
@@ -86,6 +121,13 @@ int ** readFile(char *filein, int size){
 	int **temp = NULL;
 	int *temp2 = NULL;
 	puzzle  = (int **) malloc(sizeof(int*)*size);
+	
+	if(puzzle == NULL){
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
+
+
 	temp = puzzle;
 	int i;
 	
@@ -93,6 +135,13 @@ int ** readFile(char *filein, int size){
 
 	for(i=0;i<size;i++){
 		*temp =(int*)malloc(sizeof(int)*size);
+		
+		if(temp == NULL){
+			printf("Failed to allocate memory\n");
+			exit(EXIT_FAILURE);
+		}
+
+
 		temp++; 
 
 	}
@@ -102,6 +151,14 @@ int ** readFile(char *filein, int size){
 	printf("Break: 6\n");
 
 	char *tmp = (char*) malloc(sizeof(char)*100);
+
+	if(tmp == NULL){
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
+
+
+
 	char *hp = NULL;
 	while(fgets(tmp, 100, fp) != NULL){
 		hp = tmp;

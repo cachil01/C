@@ -1,5 +1,5 @@
-#ifndef TREE_NODE
-#define TREE_NODE
+#ifndef __TREE_NODE__
+#define __TREE_NODE__
 
 typedef struct tree_node
 {
