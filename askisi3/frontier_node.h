@@ -10,4 +10,17 @@ typedef struct frontier_node{
 
 } FRONTIER_NODE;
 
+typedef struct {
+
+	tree_node *search_tree;
+	frontier_node *frontier_head;
+	frontier_node *frontier_tail;
+	int size;
+
+} QUEUE;
+
+
+QUEUE *initQueue(tree_node *root);
+
+
 #endif
