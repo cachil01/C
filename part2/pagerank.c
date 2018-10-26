@@ -18,8 +18,10 @@
 * @brief This is the main funtion. 
 *
 * 
-* The program opens the two files and 
-*
+* The program opens the two files and stores the data in the heap with the use of the malloc function. 
+* After the data is stored in tables it gets processed to get the pagerank for each site.
+* In the end the results are printed on stdout.
+* 
 *
 * @param argc The number of arguments given through the command prompt
 * @param argv The arguments given through the command prompt
@@ -71,7 +73,7 @@ int main(int argc, char *argv[]){
     int count =0;
     char string[100];
 
-    while(fgets(string, 100, fp1) != NULL){
+    while(fgets(string, 100, fp1) != NULL){              // Here the first file is read that contains the hostnames
 
         char* t = NULL;
         t = strtok(string, " ");
@@ -105,7 +107,7 @@ int main(int argc, char *argv[]){
 
     
 
-    printf("%d\n", count);
+    printf("%d\n", count);				// Here the table that holds the amount of hyperlinks to each host increases depending on the number of hosts.
 
     int **tempVisits = (int **)realloc(visits, count*sizeof(int*));
     if(tempVisits == NULL){
@@ -119,7 +121,7 @@ int main(int argc, char *argv[]){
 
     char *t = NULL;
 
-   while(fgets(string,sizeof(string),fp2)){
+   while(fgets(string,sizeof(string),fp2)){		// The second file is read.
       int k = 0;
       int numbers[100];
       t = strtok(string, " ->:");
@@ -223,15 +225,15 @@ int main(int argc, char *argv[]){
     printf("\n\n\n");
     printf("+++ Start of printing PR +++\n\n");
 
-    float PRi[i];
-   float PRi1[i];
-   int position;
-   for (position=0;position<i;position++){
-      PRi[position] = 1;
-   }
-   float distance = 1.0;
+    float PRi[i];              		
+    float PRi1[i];
+    int position;
+    for (position=0;position<i;position++){
+       PRi[position] = 1;
+    }
+    float distance = 1.0;
 
-   while(!(distance<=(0.02))){
+    while(!(distance<=(0.02))){			// The pagerank is calculated.
       int m,n;
       float total;
       for (m = 0;m<i;m++){

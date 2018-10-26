@@ -1,3 +1,18 @@
+/**
+* @file fcompare.c
+* @brief This is a program compares two text files line by line and prints any missmatching lines 
+*
+*
+*
+*
+*
+* @author Christakis Achilleos
+* @bug No known bugs. 
+*
+*
+*
+*
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,8 +20,21 @@
 //Macro for converting an uppercase character to a lowercase
 #define  lcase(x) ((x) >= 'A' && (x) <= 'Z' ? (x) + ('a' -'A'): (x))
 
-char makelc(char);
+
 void compareFiles(char *, char*, int);
+
+
+/**
+* @brief This is the main funtion. 
+*
+* 
+* The program decides based on command line arguments if it will use any features through /ln /s /nc
+*
+*
+* @param argc The number of arguments given through the command prompt
+* @param argv The arguments given through the command prompt
+* @return returns 0 when finished
+*/
 int main (int argc, char *argv[]){
 
 
@@ -20,7 +48,8 @@ int main (int argc, char *argv[]){
 		exit(EXIT_FAILURE);
 	}
 	
-	int i ;
+	int i ;                                            // Here the options are read and 
+							   // and any extra are ignored.
 	char *t;
 	for (i = 1; i< argc; i++){
 		t = argv[i];
@@ -63,7 +92,17 @@ int main (int argc, char *argv[]){
     return 0;
 }
 
-
+/**
+* @brief This function opens the files and reads them. It then proceeds to compare them and print the * * * missmatches.
+*
+*
+*
+*
+* @param  filename1 This is the name of the first file.
+* @param filename2 This is the name of the second file.
+* @param code This is the code that indicates what options were chosen.
+* @return void
+*/
 void compareFiles( char *filename1, char *filename2, int code  ){
 	
 	FILE *fp = fopen(filename1, "r");	// Here the file is opened for reading
@@ -180,10 +219,6 @@ void compareFiles( char *filename1, char *filename2, int code  ){
 	
 	fclose(fp);
 	fclose(fp2);
-
-
-
-
 
 }
 
