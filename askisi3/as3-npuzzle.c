@@ -13,7 +13,7 @@
 
 int main(int argc, char *argv[]){
 
-	printf("Break: 1\n");
+
 	if (argc != 4){
 		printf("Wrong number of arguments\n");
 		exit(EXIT_FAILURE);
@@ -21,32 +21,17 @@ int main(int argc, char *argv[]){
 	char *method = argv[1];
 	char *filein = argv[2];
 	char *fileout = argv[3];
-	printf("Break: 2\n");
+
 	int size = determineSize(filein);
-	//TREE_NODE *p = NULL;
 	int **puzzle = readFile(filein, size);
 	
 	
 
 
-	printf("Break: 7\n");
 
 	int h= 0;
 	
-	printf("testing the readfile\n\n");
-	
-	int i,k;
-	
-	for(i = 0;i<size;i++){
-		
-		
-		for(k =0;k<size;k++){
-			printf("%d ",puzzle[i][k]);
-			
-		}
-		printf("\n");
-		
-	}
+
 
 	TREE_NODE *p = NULL;
 	initTreeNode(&p, puzzle, 0, h, NULL, 0);
@@ -70,21 +55,8 @@ int main(int argc, char *argv[]){
 	}
 
 	
-	//printing for first enqueue
-	printf("first enqueue\n");
-	for(i = 0;i<size;i++){
-		
-		
-			for(k =0;k<size;k++){
-				printf("%d ",q->frontier_tail->leaf->puzzle[i][k]);
-			
-			}
-		printf("\n");
-		
-		
-		
-	}
-	printf("--------------------------\n");
+	
+
 	
 	if(strcmp(method, "breadth") == 0){
 		int res =runMethod(q, size, fileout, 0);

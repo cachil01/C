@@ -5,16 +5,7 @@
 #include "queue.h"
 #include "run.h"
 
-/*int isSolution(TREE_NODE *node, int size){
-	
-	int **temp = NULL;
-	temp = node->puzzle;
-	
-		
-	return 0;
-	
-}
-*/
+
 
 /*
 	This method calculates the manhattan distance of the current puzzle to the solution. This distance	
@@ -28,7 +19,6 @@ int runMethod(QUEUE *q, int size, char *fileout, int code){
 			
 			TREE_NODE *b =NULL;
 			b = dequeue(q);
-			//printf("dequeued a child\n");
 			
 			
 			for(i =0; i<4;i++){
@@ -36,26 +26,8 @@ int runMethod(QUEUE *q, int size, char *fileout, int code){
 				
 				temp = makeChild(b , i, size);
 				if(temp != NULL){
-					/*int p, m;
-					for(p = 0;p<size;p++){
-						for(m =0;m<size;m++){
-							printf("%d ",temp->puzzle[p][m]);
-						}
-						printf("\n");
-								
-					}
-					printf("\n");*/
-					//printf("made a child!\n");
-					//printf("The manhattan number is: %d\n", temp->h);
+					
 					if(temp->h == 0){
-						printf("solution was found\n");
-							//int p, m;
-							/*for(p = 0;p<size;p++){
-								for(m =0;m<size;m++){
-									printf("%d ",temp->puzzle[p][m]);
-								}
-								printf("\n");
-							}*/
 							
 							
 						FILE *fp = NULL;
@@ -65,14 +37,14 @@ int runMethod(QUEUE *q, int size, char *fileout, int code){
 							exit(EXIT_FAILURE);
 						}
 						int count =0;
-						printf("\n");
+						
 						printSolution(temp, &count, fp);
 						fclose(fp);
 						return 0;
 					}
 					else{
 						
-						//printf("enqueued a child\n");
+					
 						switch (code){
 						
 							case 0:
@@ -141,16 +113,6 @@ int **readFile(char *filein, int size){
 
 		exit(EXIT_FAILURE);
 	}
-	
-	/*int **puzzle = (int**)malloc(sizeof(int*)*size);
-	
-	if(puzzle == NULL){
-		printf("Failed to allocate memory\n");
-		exit(EXIT_FAILURE);
-	}*/
-
-
-	printf("Break: 4\n");
 
 
 	int **temp = NULL;
@@ -166,7 +128,7 @@ int **readFile(char *filein, int size){
 	temp = puzzle;
 	int i;
 	
-	printf("Break: 5\n");
+
 
 	for(i=0;i<size;i++){
 		*temp =(int*)malloc(sizeof(int)*size);
@@ -183,7 +145,7 @@ int **readFile(char *filein, int size){
 	 
 
 	temp = puzzle;
-	printf("Break: 6\n");
+
 
 	char *tmp = (char*) malloc(sizeof(char)*100);
 
@@ -194,19 +156,11 @@ int **readFile(char *filein, int size){
 
 
 
-	//char *hp = NULL;
-	while(fgets(tmp, 100, fp) != NULL){
-		//hp = tmp;
-		temp2 = *temp;
-		/*while(*hp!= '\0'){
-			
-			if(*hp != '\t' && *hp!= '\n' && *hp != '\0'){
-				*temp2 = *hp - '0';
-				temp2++;	
-			}
-			hp++;
 
-		}*/
+	while(fgets(tmp, 100, fp) != NULL){
+		
+		temp2 = *temp;
+		
 		
 		char *token;
 		char s[4] = "\t\n ";
