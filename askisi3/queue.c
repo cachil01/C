@@ -24,14 +24,14 @@ QUEUE *initQueue(TREE_NODE *root){
 
 }
 
-int enqueue(QUEUE *q, TREE_NODE *n){
+int enqueue(QUEUE *q, TREE_NODE *t){
 
 	if(q == NULL) {
 		printf("This is a NULL queue\n");
 		return -1;
 	}
 
-	if (n == NULL){
+	if (t == NULL){
 		printf("The node is NULL \n");
 		return -1;
 	}
@@ -43,7 +43,7 @@ int enqueue(QUEUE *q, TREE_NODE *n){
 		exit(EXIT_FAILURE);
 	}	
 
-	n->leaf = n;
+	n->leaf = t;
 	n->next = NULL;
 	n->previous = NULL;
 
@@ -84,7 +84,7 @@ FRONTIER_NODE *dequeue(QUEUE *q){
 		return NULL;
 	}
 
-	if(size == 1){
+	if(q->size == 1){
 		FRONTIER_NODE *t = NULL;
 		t = q->frontier_head;
 		q->frontier_tail = NULL;

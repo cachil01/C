@@ -8,6 +8,8 @@
 #include "queue.h"
 
 int **readFile(char*filein, int size);
+int determineSize(char *filein);
+
 
 int main(int argc, char *argv[]){
 
@@ -18,7 +20,7 @@ int main(int argc, char *argv[]){
 	}
 
 	char *filein = argv[2];
-	char *fileout = argv[3];
+	//char *fileout = argv[3];
 	printf("Break: 2\n");
 	int size = determineSize(filein);
 	//TREE_NODE *p = NULL;
@@ -85,7 +87,7 @@ int determineSize(char *filein){
 		exit(EXIT_FAILURE);
 	}	
 	
-	int count;
+	int count=0;
 	char *tmp =(char*) malloc(sizeof(char)*100);
 	
 	if(tmp == NULL){
