@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 		printf("Wrong number of arguments\n");
 		exit(EXIT_FAILURE);
 	}
-
+	char *method = argv[1];
 	char *filein = argv[2];
 	char *fileout = argv[3];
 	printf("Break: 2\n");
@@ -93,9 +93,20 @@ int main(int argc, char *argv[]){
 	}
 	printf("--------------------------\n");
 	
+	if(strcmp(method, "breadth") == 0){
+		int res =runBreadth(q, size, fileout);
+		if(res == 1){
+			printf("The solution was not found\n");
+			return 0;
+		}
+	}
+	else{
+		printf("Wrong command argument!\n");
+	}
 	
 	
-	while(q->size != 0){
+	
+	/*while(q->size != 0){
 			
 			TREE_NODE *b =NULL;
 			b = dequeue(q);
@@ -107,7 +118,7 @@ int main(int argc, char *argv[]){
 				
 				temp = makeChild(b , i, size);
 				if(temp != NULL){
-					/*int p, m;
+					int p, m;
 					for(p = 0;p<size;p++){
 						for(m =0;m<size;m++){
 							printf("%d ",temp->puzzle[p][m]);
@@ -115,18 +126,18 @@ int main(int argc, char *argv[]){
 						printf("\n");
 								
 					}
-					printf("\n");*/
+					printf("\n");
 					//printf("made a child!\n");
 					//printf("The manhattan number is: %d\n", temp->h);
 					if(temp->h == 0){
 						printf("solution was found\n");
 							//int p, m;
-							/*for(p = 0;p<size;p++){
+							for(p = 0;p<size;p++){
 								for(m =0;m<size;m++){
 									printf("%d ",temp->puzzle[p][m]);
 								}
 								printf("\n");
-							}*/
+							}
 							
 							
 						FILE *fp = NULL;
@@ -138,6 +149,7 @@ int main(int argc, char *argv[]){
 						int count =0;
 						printf("\n");
 						printSolution(temp, &count, fp);
+						fclose(fp);
 						exit(EXIT_SUCCESS);
 					}
 					else{
@@ -148,9 +160,9 @@ int main(int argc, char *argv[]){
 				}
 			}
 			
-	}
+	}*/
 	
-	printf("The solution was not found\n");
+	//printf("The solution was not found\n");
 
 	return 0;
 

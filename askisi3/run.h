@@ -7,7 +7,7 @@ int determineSize(char *filein);
 
 int ** readFile(char *filein, int size);
 
-
+int runBreadth(QUEUE *q, int size, char *fileout);
 
 
 

@@ -1,7 +1,26 @@
-number of steps: 6
+number of steps: 25
+down
+left
+up
 left
 up
 right
+right
+down
+left
+left
+down
+right
+right
+up
+left
+left
+down
+right
+up
+up
+left
 down
 down
+right
 right
