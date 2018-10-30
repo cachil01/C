@@ -57,7 +57,7 @@ int enqueue(QUEUE *q, TREE_NODE *t){
 		q->frontier_tail->next = n;
 		n->previous = q->frontier_tail;
 		q->frontier_tail = n;
-		
+									//comment	
 		(q->size)++;
 	}
 
