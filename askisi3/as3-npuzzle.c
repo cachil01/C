@@ -5,10 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "queue.h"
-
-int **readFile(char*filein, int size);
-int determineSize(char *filein);
+#include "run.h"
+#include "tree_node.h"
 
 
 int main(int argc, char *argv[]){
@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 	}
 
 	char *filein = argv[2];
-	//char *fileout = argv[3];
+	char *fileout = argv[3];
 	printf("Break: 2\n");
 	int size = determineSize(filein);
 	//TREE_NODE *p = NULL;
@@ -31,11 +31,12 @@ int main(int argc, char *argv[]){
 
 	printf("Break: 7\n");
 
-
+	int h= 0;
 	
 	printf("testing the readfile\n\n");
 	
 	int i,k;
+	
 	for(i = 0;i<size;i++){
 		
 		
@@ -48,150 +49,114 @@ int main(int argc, char *argv[]){
 	}
 
 	TREE_NODE *p = NULL;
-	p= (TREE_NODE *) malloc(sizeof(TREE_NODE));
+	initTreeNode(&p, puzzle, 0, h, NULL, 0);
+	
 	
 	printf("Break: 8\n");
 
-	if(p == NULL){
-		printf("Failed to allocate memory\n");
-		exit(EXIT_FAILURE);
+	
+
+	
+	
+	if( manhattan(p->puzzle,size) == 0){
+			
+		printf("The root is the solution\n");
+		exit(EXIT_SUCCESS);							// checks root
+			
 	}
 	
-	
-	p->puzzle = puzzle;
-	p->parent = NULL;
-
 	QUEUE *q = NULL;
 	q = initQueue(p);
 	
-	if(enqueue(q, p) != -1){
+	if(enqueue(q, p) == -1){
 		
 		
-
-	}
-	else{
-		printf("Error, exiting\n");
+		printf("Error enquing, exiting\n");
 		exit(EXIT_FAILURE);
-	}	
-
-
-
-}
-
-int determineSize(char *filein){
-
-	FILE *fp = NULL;
-	fp = fopen(filein, "r");
-	if(fp == NULL){
-		printf("Error in opening file\n");
-		exit(EXIT_FAILURE);
-	}	
-	
-	int count=0;
-	char *tmp =(char*) malloc(sizeof(char)*100);
-	
-	if(tmp == NULL){
-		printf("Failed to allocate memory\n");
-		exit(EXIT_FAILURE);
-	}
-
-	
-	while(fgets(tmp, 100, fp) != NULL){
-		count++;
-	}
-	free(tmp);
-
-	return count;
-
-}
-
-
-int ** readFile(char *filein, int size){
-
-	FILE *fp = NULL;
-	fp = fopen(filein, "r");
-
-	if(fp == NULL){
 		
-		printf("Cannot open file\n");
-
-		exit(EXIT_FAILURE);
-	}
-	
-	int **puzzle = (int**)malloc(sizeof(int*)*size);
-	
-	if(puzzle == NULL){
-		printf("Failed to allocate memory\n");
-		exit(EXIT_FAILURE);
 	}
 
-
-	printf("Break: 4\n");
-
-
-	int **temp = NULL;
-	int *temp2 = NULL;
-	puzzle  = (int **) malloc(sizeof(int*)*size);
 	
-	if(puzzle == NULL){
-		printf("Failed to allocate memory\n");
-		exit(EXIT_FAILURE);
-	}
-
-
-	temp = puzzle;
-	int i;
-	
-	printf("Break: 5\n");
-
-	for(i=0;i<size;i++){
-		*temp =(int*)malloc(sizeof(int)*size);
+	//printing for first enqueue
+	printf("first enqueue\n");
+	for(i = 0;i<size;i++){
 		
-		if(temp == NULL){
-			printf("Failed to allocate memory\n");
-			exit(EXIT_FAILURE);
-		}
-
-
-		temp++; 
-
-	}
-	 
-
-	temp = puzzle;
-	printf("Break: 6\n");
-
-	char *tmp = (char*) malloc(sizeof(char)*100);
-
-	if(tmp == NULL){
-		printf("Failed to allocate memory\n");
-		exit(EXIT_FAILURE);
-	}
-
-
-
-	char *hp = NULL;
-	while(fgets(tmp, 100, fp) != NULL){
-		hp = tmp;
-		temp2 = *temp;
-		while(*hp!= '\0'){
+		
+			for(k =0;k<size;k++){
+				printf("%d ",q->frontier_tail->leaf->puzzle[i][k]);
 			
-			if(*hp != '\t' && *hp!= '\n' && *hp != '\0'){
-				*temp2 = *hp - '0';
-
-				temp2++;	
 			}
-			hp++;
-
-		}
-
-		temp++;		
+		printf("\n");
+		
+		
+		
 	}
+	printf("--------------------------\n");
+	
+	
+	
+	while(q->size != 0){
+			
+			TREE_NODE *b =NULL;
+			b = dequeue(q);
+			//printf("dequeued a child\n");
+			
+			
+			for(i =0; i<4;i++){
+				TREE_NODE *temp= NULL;
+				
+				temp = makeChild(b , i, size);
+				if(temp != NULL){
+					/*int p, m;
+					for(p = 0;p<size;p++){
+						for(m =0;m<size;m++){
+							printf("%d ",temp->puzzle[p][m]);
+						}
+						printf("\n");
+								
+					}
+					printf("\n");*/
+					//printf("made a child!\n");
+					//printf("The manhattan number is: %d\n", temp->h);
+					if(temp->h == 0){
+						printf("solution was found\n");
+							//int p, m;
+							/*for(p = 0;p<size;p++){
+								for(m =0;m<size;m++){
+									printf("%d ",temp->puzzle[p][m]);
+								}
+								printf("\n");
+							}*/
+							
+							
+						FILE *fp = NULL;
+						fp = fopen(fileout, "w");
+						if( fp == NULL){
+							printf("FAILED TO OPEN FILE\n");
+							exit(EXIT_FAILURE);
+						}
+						int count =0;
+						printf("\n");
+						printSolution(temp, &count, fp);
+						exit(EXIT_SUCCESS);
+					}
+					else{
+						
+						//printf("enqueued a child\n");
+						enqueue(q, temp);
+					}
+				}
+			}
+			
+	}
+	
+	printf("The solution was not found\n");
 
-	
-	
-	return puzzle;
+	return 0;
+
 }
+
+
 
 
 

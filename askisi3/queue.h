@@ -1,14 +1,7 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
-typedef struct tree_node
-{
-	int **puzzle;
-	int g;
-	int h;
-	struct tree_node *parent;
-	struct tree_node *children[4];
-} TREE_NODE;
+#include "tree_node.h"
 
 
 typedef struct frontier_node{
@@ -34,6 +27,6 @@ QUEUE *initQueue(TREE_NODE *root);
 
 int enqueue(QUEUE *q, TREE_NODE *n);
 
-FRONTIER_NODE *dequeue(QUEUE *q);
+TREE_NODE *dequeue(QUEUE *q);
 
 #endif

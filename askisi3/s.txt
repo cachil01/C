@@ -1,0 +1,7 @@
+number of steps: 6
+left
+up
+right
+down
+down
+right
