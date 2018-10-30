@@ -159,10 +159,108 @@ int sortedEnqueue(QUEUE *q, TREE_NODE *t){
 			(q->size)++;
 			return 0;
 		}
+
 		
+	}
+
+	
+}
+
+int sortedEnqueue2(QUEUE *q, TREE_NODE *t){
+	
+	if(q == NULL) {
+		printf("This is a NULL queue\n");
+		return -1;
+	}
+
+	if (t == NULL){
+		printf("The node is NULL \n");
+		return -1;
+	}
+
+	FRONTIER_NODE *n = NULL;
+	n = (FRONTIER_NODE*) malloc(sizeof(FRONTIER_NODE));
+	if(n == NULL){
+		printf("Failed to allocate memory\n");
+		exit(EXIT_FAILURE);
+	}	
+
+	n->leaf = t;
+	n->next = NULL;
+	n->previous = NULL;
+
+	if (q->size == 0){
+		q->frontier_head = n;
+		q->frontier_tail = n;
+		q->size = 1;
+		return 0;
+	}
+	else{
 		
+		FRONTIER_NODE *tmp = NULL;
+		tmp = q->frontier_head;
+		if(q->size == 1){
+			if((t->h + t->g) < (tmp->leaf->h + tmp->leaf->g )){
+				n->next = tmp;
+				tmp->previous = n;
+				q->frontier_head = n;
+				(q->size)++;
+				
+				return 0;
+			}
+			else{
+				tmp->next = n;
+				n->previous = tmp;
+				q->frontier_tail = n;
+				(q->size)++;
+				
+				return 0;
+			}
+		}
 		
+		while(tmp->next != NULL){
+			
+			if((t->h + t->g) < (tmp->leaf->h + tmp->leaf->g )){
+				if(tmp->previous == NULL){
+					q->frontier_head = n;
+					n->next = tmp;
+					tmp->previous = n;
+					
+				}
+				else{
+					tmp->previous->next = n;
+					n->previous = tmp ->previous;
+					n->next = tmp;
+					tmp->previous = n;
+					
+				}
+				(q->size)++;
+				return 0;
+			}
+			else{
+				tmp = tmp->next;
+				
+			}
+			
+			
+		}
 		
+		if((t->h + t->g) < (tmp->leaf->h + tmp->leaf->g )){
+			tmp->previous->next = n;
+			n->previous = tmp ->previous;
+			n->next = tmp;
+			tmp->previous = n;
+			(q->size)++;
+			return 0;
+		}
+		else{
+			tmp->next = n;
+			n->previous = tmp;
+			q->frontier_tail = n;
+			(q->size)++;
+			return 0;
+		}
+
 		
 	}
 

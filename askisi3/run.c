@@ -84,7 +84,7 @@ int runMethod(QUEUE *q, int size, char *fileout, int code){
 							break;
 							
 							case 2:
-							sortedEnqueue(q, temp);
+							sortedEnqueue2(q, temp);
 							break;
 							
 						}
