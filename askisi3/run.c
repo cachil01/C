@@ -22,7 +22,7 @@
 
 
 */
-int runBreadth(QUEUE *q, int size, char *fileout){
+int runMethod(QUEUE *q, int size, char *fileout, int code){
 	int i;
 	while(q->size != 0){
 			
@@ -73,7 +73,23 @@ int runBreadth(QUEUE *q, int size, char *fileout){
 					else{
 						
 						//printf("enqueued a child\n");
-						enqueue(q, temp);
+						switch (code){
+						
+							case 0:
+							enqueue(q,temp);
+							break;
+							
+							case 1:
+							sortedEnqueue(q, temp);
+							break;
+							
+							case 2:
+							sortedEnqueue(q, temp);
+							break;
+							
+						}
+						
+						
 					}
 				}
 			}
@@ -83,6 +99,8 @@ int runBreadth(QUEUE *q, int size, char *fileout){
 	
 	
 }
+
+
 
 int determineSize(char *filein){
 

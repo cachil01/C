@@ -51,13 +51,6 @@ int main(int argc, char *argv[]){
 	TREE_NODE *p = NULL;
 	initTreeNode(&p, puzzle, 0, h, NULL, 0);
 	
-	
-	printf("Break: 8\n");
-
-	
-
-	
-	
 	if( manhattan(p->puzzle,size) == 0){
 			
 		printf("The root is the solution\n");
@@ -94,7 +87,21 @@ int main(int argc, char *argv[]){
 	printf("--------------------------\n");
 	
 	if(strcmp(method, "breadth") == 0){
-		int res =runBreadth(q, size, fileout);
+		int res =runMethod(q, size, fileout, 0);
+		if(res == 1){
+			printf("The solution was not found\n");
+			return 0;
+		}
+	}
+	else if(strcmp(method, "best") == 0){
+		int res = runMethod(q, size, fileout, 1);
+		if(res == 1){
+			printf("The solution was not found\n");
+			return 0;
+		}
+	}
+	else if(strcmp(method, "a-star") == 0){
+		int res = runMethod(q, size, fileout, 2);
 		if(res == 1){
 			printf("The solution was not found\n");
 			return 0;
@@ -103,66 +110,6 @@ int main(int argc, char *argv[]){
 	else{
 		printf("Wrong command argument!\n");
 	}
-	
-	
-	
-	/*while(q->size != 0){
-			
-			TREE_NODE *b =NULL;
-			b = dequeue(q);
-			//printf("dequeued a child\n");
-			
-			
-			for(i =0; i<4;i++){
-				TREE_NODE *temp= NULL;
-				
-				temp = makeChild(b , i, size);
-				if(temp != NULL){
-					int p, m;
-					for(p = 0;p<size;p++){
-						for(m =0;m<size;m++){
-							printf("%d ",temp->puzzle[p][m]);
-						}
-						printf("\n");
-								
-					}
-					printf("\n");
-					//printf("made a child!\n");
-					//printf("The manhattan number is: %d\n", temp->h);
-					if(temp->h == 0){
-						printf("solution was found\n");
-							//int p, m;
-							for(p = 0;p<size;p++){
-								for(m =0;m<size;m++){
-									printf("%d ",temp->puzzle[p][m]);
-								}
-								printf("\n");
-							}
-							
-							
-						FILE *fp = NULL;
-						fp = fopen(fileout, "w");
-						if( fp == NULL){
-							printf("FAILED TO OPEN FILE\n");
-							exit(EXIT_FAILURE);
-						}
-						int count =0;
-						printf("\n");
-						printSolution(temp, &count, fp);
-						fclose(fp);
-						exit(EXIT_SUCCESS);
-					}
-					else{
-						
-						//printf("enqueued a child\n");
-						enqueue(q, temp);
-					}
-				}
-			}
-			
-	}*/
-	
-	//printf("The solution was not found\n");
 
 	return 0;
 

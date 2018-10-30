@@ -25,7 +25,9 @@ typedef struct {
 
 QUEUE *initQueue(TREE_NODE *root);
 
-int enqueue(QUEUE *q, TREE_NODE *n);
+int enqueue(QUEUE *q, TREE_NODE *t);
+
+int sortedEnqueue(QUEUE *q, TREE_NODE *t);
 
 TREE_NODE *dequeue(QUEUE *q);
 
