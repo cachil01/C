@@ -1,9 +1,25 @@
+/**
+* @file tree.c
+* @brief This is the source file for the functions that have to do with TREE_NODEs
+*
+* It contains a function that creates a TREE_NODE, a function to create a child of a TREE_NODE , a function that calculates the manhattan value and a method to print
+* the moves that created the node. Also contains two helping functions that are used be the makeChild function.
+*
+* @author Christakis Achilleos
+* @bug No known bugs. 
+*
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "tree_node.h"
 
 
 int initTreeNode(TREE_NODE **p, int **puzzle, int g, int h, TREE_NODE *parent, int move){
+	
+	
+	if (p==NULL || puzzle ==NULL){
+		return -1;
+	}
 	
 	TREE_NODE *z= (TREE_NODE *) malloc(sizeof(TREE_NODE));
 	

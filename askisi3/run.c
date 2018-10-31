@@ -1,4 +1,14 @@
-
+/**
+* @file run.c
+* @brief This is the source file for the functions that the main function requires for input output and algorithm calling.
+*
+* It contains a function that bast on the algorithm decided finds the solution. Also contains a funtion to find the size of the puzzle
+* and a function to read the initial state of the puzzle from the input file.
+*
+* @author Christakis Achilleos
+* @bug No known bugs. 
+*
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,12 +17,7 @@
 
 
 
-/*
-	This method calculates the manhattan distance of the current puzzle to the solution. This distance	
-	is less or equal to the amount of steps to reach the solution.
 
-
-*/
 int runMethod(QUEUE *q, int size, char *fileout, int code){
 	int i;
 	while(q->size != 0){

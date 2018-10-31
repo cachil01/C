@@ -1,4 +1,18 @@
-
+/**
+* @file queue.c
+* @brief This is the source file for all the queue functions
+*
+* It contains a normal enqueue function and two diferent sortedEnqueue funtions that enqueue nodes in a sorted manner
+* Also there is an initQueue for intializing the queue and a dequeue for dequeue nodes from the queue.
+* This queue holds FRONTIER_NODEs.
+*
+* @author Christakis Achilleos
+* @bug No known bugs. 
+*
+*
+*
+*
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
