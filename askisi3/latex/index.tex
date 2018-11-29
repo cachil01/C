@@ -1,0 +1,4 @@
+\begin{DoxyAuthor}{Author}
+Christakis Achilleos
+\end{DoxyAuthor}
+The program takes as input a txt file and an output txt file as well as the method to solve the problem with (breadth, best , a-\/star). The command format is ./executable method input.\+txt output.\+txt . The program is compiled using the make command inside the directory of the .c and .h files. The program works by enqueing the enitial root node in the queue. Then the queue is dequeued and for each node dequeued the program creates its children and checks if one of them is the solution. If not then the children are enqueue using the method of the requested algorithm. The breadth algorithm uses brute force to find the solution. The best uses the manhattan value to find the solution whereas the a-\/star uses the depth of the node and the manhattan value when sorting the queue so as to minimize checking too deep paths. 

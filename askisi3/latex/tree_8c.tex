@@ -1,0 +1,45 @@
+\hypertarget{tree_8c}{}\section{tree.\+c File Reference}
+\label{tree_8c}\index{tree.\+c@{tree.\+c}}
+
+
+This is the source file for the functions that have to do with T\+R\+E\+E\+\_\+\+N\+O\+D\+Es.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tree\+\_\+node.\+h\char`\"{}}\newline
+Include dependency graph for tree.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tree_8c_ae1c866c7fe36b527de9951d5ef3536a0}\label{tree_8c_ae1c866c7fe36b527de9951d5ef3536a0}} 
+int {\bfseries init\+Tree\+Node} (T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$$\ast$p, int $\ast$$\ast$puzzle, int g, int h, T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$parent, int move)
+\item 
+\mbox{\Hypertarget{tree_8c_adc76e394f213242c7079a7ece63f34c6}\label{tree_8c_adc76e394f213242c7079a7ece63f34c6}} 
+int {\bfseries manhattan} (int $\ast$$\ast$puzzle, int size)
+\item 
+\mbox{\Hypertarget{tree_8c_a2b1f16f0d2413ab348853bcde4e58d30}\label{tree_8c_a2b1f16f0d2413ab348853bcde4e58d30}} 
+T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$ {\bfseries make\+Child} (T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$parent, int move, int size)
+\item 
+\mbox{\Hypertarget{tree_8c_a3e72d1ff9b30866f1319ca4ea5d54040}\label{tree_8c_a3e72d1ff9b30866f1319ca4ea5d54040}} 
+int {\bfseries valid\+Move} (T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$p, int move, int size)
+\item 
+\mbox{\Hypertarget{tree_8c_af11e53f6722fe902d03f4e75480d56f3}\label{tree_8c_af11e53f6722fe902d03f4e75480d56f3}} 
+int {\bfseries node\+Exist} (int $\ast$$\ast$puzzle, T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$parent, int size)
+\item 
+\mbox{\Hypertarget{tree_8c_ad786344bdc13b634d6175705d6aa5c80}\label{tree_8c_ad786344bdc13b634d6175705d6aa5c80}} 
+void {\bfseries print\+Solution} (T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$node, int $\ast$count, F\+I\+LE $\ast$fp)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the source file for the functions that have to do with T\+R\+E\+E\+\_\+\+N\+O\+D\+Es. 
+
+It contains a function that creates a T\+R\+E\+E\+\_\+\+N\+O\+DE, a function to create a child of a T\+R\+E\+E\+\_\+\+N\+O\+DE , a function that calculates the manhattan value and a method to print the moves that created the node. Also contains two helping functions that are used be the make\+Child function.
+
+\begin{DoxyAuthor}{Author}
+Christakis Achilleos 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000002}{Bug}]No known bugs. \end{DoxyRefDesc}

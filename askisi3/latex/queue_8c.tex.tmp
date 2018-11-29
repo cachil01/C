@@ -1,0 +1,144 @@
+\hypertarget{queue_8c}{}\section{queue.\+c File Reference}
+\label{queue_8c}\index{queue.\+c@{queue.\+c}}
+
+
+This is the source file for all the queue functions.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\newline
+Include dependency graph for queue.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$ \hyperlink{queue_8c_a52b97da1b405c46b3651b625aab17520}{init\+Queue} (T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$root)
+\begin{DoxyCompactList}\small\item\em This function initalizes a \hyperlink{structQUEUE}{Q\+U\+E\+UE} and returns it. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a4fc30b3bc86a8f4e81f6808fcab375bf}{enqueue} (\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$q, T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$t)
+\begin{DoxyCompactList}\small\item\em This function enqueues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a198f53178a2eeb7038ee36b4fd9af0ae}{sorted\+Enqueue} (\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$q, T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$t)
+\begin{DoxyCompactList}\small\item\em This function enqueues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue in an ascending order depending on the manhattan value of the node. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_af1205616679e42a8e6eefa74b623e5e6}{sorted\+Enqueue2} (\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$q, T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$t)
+\begin{DoxyCompactList}\small\item\em This function enqueues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue in an ascending order depending on the manhattan value of the node plus the depth of the node. \end{DoxyCompactList}\item 
+T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$ \hyperlink{queue_8c_a34efb39520764fbafbbf0a0b44d4e93a}{dequeue} (\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$q)
+\begin{DoxyCompactList}\small\item\em This function dequeues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the source file for all the queue functions. 
+
+It contains a normal enqueue function and two diferent sorted\+Enqueue funtions that enqueue nodes in a sorted manner Also there is an init\+Queue for intializing the queue and a dequeue for dequeue nodes from the queue. This queue holds F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+D\+Es.
+
+\begin{DoxyAuthor}{Author}
+Christakis Achilleos 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000001}{Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{queue_8c_a34efb39520764fbafbbf0a0b44d4e93a}\label{queue_8c_a34efb39520764fbafbbf0a0b44d4e93a}} 
+\index{queue.\+c@{queue.\+c}!dequeue@{dequeue}}
+\index{dequeue@{dequeue}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{dequeue()}{dequeue()}}
+{\footnotesize\ttfamily T\+R\+E\+E\+\_\+\+N\+O\+DE$\ast$ dequeue (\begin{DoxyParamCaption}\item[{\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$}]{q }\end{DoxyParamCaption})}
+
+
+
+This function dequeues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue. 
+
+Since the queue holds F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+D\+Es but it returns a T\+R\+E\+E\+\_\+\+N\+O\+DE the F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+DE is freed from memory before the T\+R\+E\+E\+\_\+\+N\+O\+DE is returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & This is the queue from which the node will be dequeued. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+E\+E\+\_\+\+N\+O\+DE Returns a pointer to the T\+R\+E\+E\+\_\+\+N\+O\+DE that was in the head of the queue. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a4fc30b3bc86a8f4e81f6808fcab375bf}\label{queue_8c_a4fc30b3bc86a8f4e81f6808fcab375bf}} 
+\index{queue.\+c@{queue.\+c}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{enqueue()}{enqueue()}}
+{\footnotesize\ttfamily int enqueue (\begin{DoxyParamCaption}\item[{\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$}]{q,  }\item[{T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+This function enqueues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue. 
+
+Since the queue holds F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+D\+Es it first makes one using the T\+R\+E\+E\+\_\+\+N\+O\+DE given as parameter t. Then it enqueues that node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & This is the queue in which the node will be enqueued in \\
+\hline
+{\em t} & T\+R\+E\+E\+\_\+\+N\+O\+DE that is used to make the new F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+DE that will be enqueued in the queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns a 0 when it is successfull. -\/1 when an error occured. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a52b97da1b405c46b3651b625aab17520}\label{queue_8c_a52b97da1b405c46b3651b625aab17520}} 
+\index{queue.\+c@{queue.\+c}!init\+Queue@{init\+Queue}}
+\index{init\+Queue@{init\+Queue}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{init\+Queue()}{initQueue()}}
+{\footnotesize\ttfamily \hyperlink{structQUEUE}{Q\+U\+E\+UE}$\ast$ init\+Queue (\begin{DoxyParamCaption}\item[{T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$}]{root }\end{DoxyParamCaption})}
+
+
+
+This function initalizes a \hyperlink{structQUEUE}{Q\+U\+E\+UE} and returns it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & This is the T\+R\+E\+E\+\_\+\+N\+O\+DE that will become the root of the tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structQUEUE}{Q\+U\+E\+UE} returns an empty queue with root of the search tree a F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+DE made with the parameter root. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a198f53178a2eeb7038ee36b4fd9af0ae}\label{queue_8c_a198f53178a2eeb7038ee36b4fd9af0ae}} 
+\index{queue.\+c@{queue.\+c}!sorted\+Enqueue@{sorted\+Enqueue}}
+\index{sorted\+Enqueue@{sorted\+Enqueue}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{sorted\+Enqueue()}{sortedEnqueue()}}
+{\footnotesize\ttfamily int sorted\+Enqueue (\begin{DoxyParamCaption}\item[{\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$}]{q,  }\item[{T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+This function enqueues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue in an ascending order depending on the manhattan value of the node. 
+
+Since the queue holds F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+D\+Es it first makes one using the T\+R\+E\+E\+\_\+\+N\+O\+DE given as parameter t. Then it enqueues that node based on the manhattan value. This function is used by the best method of finding a solution
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & This is the queue in which the node will be enqueued in \\
+\hline
+{\em t} & T\+R\+E\+E\+\_\+\+N\+O\+DE that is used to make the new F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+DE that will be enqueued in the queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns a 0 when it is successfull. -\/1 when an error occured. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_af1205616679e42a8e6eefa74b623e5e6}\label{queue_8c_af1205616679e42a8e6eefa74b623e5e6}} 
+\index{queue.\+c@{queue.\+c}!sorted\+Enqueue2@{sorted\+Enqueue2}}
+\index{sorted\+Enqueue2@{sorted\+Enqueue2}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{sorted\+Enqueue2()}{sortedEnqueue2()}}
+{\footnotesize\ttfamily int sorted\+Enqueue2 (\begin{DoxyParamCaption}\item[{\hyperlink{structQUEUE}{Q\+U\+E\+UE} $\ast$}]{q,  }\item[{T\+R\+E\+E\+\_\+\+N\+O\+DE $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+This function enqueues a T\+R\+E\+E\+\_\+\+N\+O\+DE in the queue in an ascending order depending on the manhattan value of the node plus the depth of the node. 
+
+Since the queue holds F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+D\+Es it first makes one using the T\+R\+E\+E\+\_\+\+N\+O\+DE given as parameter t. Then it enqueues that node based on the manhattan value. This function is used by the a-\/star method of finding a solution
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & This is the queue in which the node will be enqueued in \\
+\hline
+{\em t} & T\+R\+E\+E\+\_\+\+N\+O\+DE that is used to make the new F\+R\+O\+N\+T\+I\+E\+R\+\_\+\+N\+O\+DE that will be enqueued in the queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns a 0 when it is successfull. -\/1 when an error occured. 
+\end{DoxyReturn}
